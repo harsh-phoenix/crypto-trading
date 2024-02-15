@@ -12,37 +12,6 @@ import seaborn as sns
 
 ### PARAMETERS
 
-exchange='bybit'
-symbol = 'BTC/USDT'
-timeframe = '15m'  # 1 day : 1D timeframe
-size=0.0005
-
-
-
-# Open the JSON file to read the key and secret
-
-
-with open('./file.json') as f:
-    data = json.load(f)
-
-# Access the values from the loaded JSON data
-key_value = data["key"]
-secret_value = data["secret"]
-
-
-# Initialize the exchange
-exchange = eval(f'ccxt.{exchange}')({
-    'enableRateLimit': True, 
-    'options': {
-        'adjustForTimeDifference': True,
-        'recvWindow': 5000,
-    },
-    'apiKey': key_value,
-    'secret': secret_value 
-})
-
-
-
 
 def fetch_price(symbol):
     price=exchange.fetchOrderBook(symbol)
@@ -96,7 +65,7 @@ def logic_exec(symbol,size,timeframe,price,id):
 
     plt.savefig(f'./images/plot.png')
 
-    time.sleep(60)
+    time.sleep(150)
 
 
 
@@ -104,6 +73,38 @@ def logic_exec(symbol,size,timeframe,price,id):
 
 
 if __name__ == '__main__':
+    
+    exchange='bybit'
+    symbol = 'BTC/USDT'
+    timeframe = '15m'  # 1 day : 1D timeframe
+    size=0.0005
+    
+    
+    
+    # Open the JSON file to read the key and secret
+    
+    
+    with open('./file.json') as f:
+        data = json.load(f)
+    
+    # Access the values from the loaded JSON data
+    key_value = data["key"]
+    secret_value = data["secret"]
+    
+    
+    # Initialize the exchange
+    exchange = eval(f'ccxt.{exchange}')({
+        'enableRateLimit': True, 
+        'options': {
+            'adjustForTimeDifference': True,
+            'recvWindow': 5000,
+        },
+        'apiKey': key_value,
+        'secret': secret_value 
+    })
+
+
+
 
     logic_exec(symbol,size,timeframe,fetch_price(symbol)[0],id='')
 
