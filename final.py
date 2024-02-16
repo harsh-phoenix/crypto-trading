@@ -103,7 +103,7 @@ def logic_exec(symbol,size,timeframe,price,id):
 
 
 if __name__ == '__main__':
-    logic_exec(symbol,size,timeframe,fetch_price(symbol)[0],id='1')
+    logic_exec(symbol,size,timeframe,fetch_price(symbol)[0],id='122323')
 
 
 # Print the fetched data
