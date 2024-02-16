@@ -93,6 +93,7 @@ def logic_exec(symbol,size,timeframe,price,id):
     sns.scatterplot(x=df[0],y=d['PSARl_0.06_0.6'],data=df,color='green')
 
     plt.savefig(f'./images/plot.png')
+    plt.close()
 
     time.sleep(150)
 
